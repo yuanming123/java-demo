@@ -5,12 +5,14 @@ public class Mytask implements Runnable {
 	Object obj = new Object();
 
 	@Override
-	public synchronized void run() {
+	public void run() {
 		try {
+			synchronized (obj) {
 				while (total >= 0) {
 					System.out.println(Thread.currentThread().getName() + "出售第" + total + "张车票!");
 					Thread.sleep(1000);
 					sub();
+				}
 			}
 		} catch (InterruptedException e) {
 			e.printStackTrace();
